@@ -1,7 +1,0 @@
-kafka:
-  bootstrap-servers: localhost:9092
-  topic:
-    signal: nodered
-    sensor: test
-server:
-  port: 9002
