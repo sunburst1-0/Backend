@@ -32,7 +32,7 @@ public class BasicController {
 	 @GetMapping(value = "/hello")
 	    public String sendMessageToKafkaTopic() {
 	    	String data="test message";
-//	        this.producer.sendMessage(data);
+
 	        
 	        return data;
 	    }
@@ -40,14 +40,9 @@ public class BasicController {
 	 @GetMapping(value = "/roomsize")
 	    public ResponseEntity<List<RoomSize>> getRoomSize() {
 	    	String data="test message";
-//	        this.producer.sendMessage(data);
-	    //	Iterable<RoomSize> k=roomSizeRepository.fi;
+
 	    	List<RoomSize> list = roomSizeRepository.findAll();
-	    	
-	    	System.out.println("excuted");
-	    
-	        
-	        
+	    	      
 	    	 return new ResponseEntity<List<RoomSize>>(list, HttpStatus.OK);
 	    }
 	 @GetMapping(value = "/aptype")
@@ -55,11 +50,7 @@ public class BasicController {
 	
 
 	    	List<ApplianceType> appliancelist = applianceTypeRepository.findAll();
-	    	
-	    	System.out.println("excuted");
-	    
-	        
-	        
+	    		        
 	    	 return new ResponseEntity<List<ApplianceType>>(appliancelist, HttpStatus.OK);
 	    }
 
