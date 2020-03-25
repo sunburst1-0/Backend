@@ -5,3 +5,18 @@ kafka:
     sensor: test
 server:
   port: 9002
+  
+spring :
+   datasource:
+         url: jdbc:mysql://localhost:3306/meta_data_handler?verifyServerCertificate=false&useSSL=false
+         username: root
+         password: root   
+         
+   jpa:
+     hibernate:
+          ddl-auto: update 
+   
+  
+
+
+
