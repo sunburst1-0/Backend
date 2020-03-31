@@ -4,11 +4,11 @@ kafka:
     signal: nodered
     sensor: test
 server:
-  port: 9002
+  port: 9004
   
 spring :
    datasource:
-         url: jdbc:mysql://localhost:3306/meta_data_handler?verifyServerCertificate=false&useSSL=false
+         url: jdbc:mysql://localhost:3306/meta_data_handler?verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true
          username: root
          password: root   
          
@@ -18,10 +18,11 @@ jpa:
           
 
 
-management:
-     endpoints:
-            web:
-              cors:         
-                  allowed-origins: http://192.168.8.102:9002
-                  allowed-methods: GET
+
                  
+management:
+   endpoints:
+      web:
+      cors:
+      allowed-origins: "*"
+      allowed-methods: GET,POST

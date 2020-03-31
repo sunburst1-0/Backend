@@ -12,11 +12,11 @@ import javax.persistence.Version;
 import java.math.BigDecimal;
 
 /**
- * ApplienceDescription entity.
+ * ApplienceMetaData entity.
  */
 @Entity
 @Table(name = "sensor_meta_data")
-public class SensorDescription {
+public class SensorMetaData {
 	
 	@Id
 	@Column(name="id")
