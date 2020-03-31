@@ -13,7 +13,7 @@ import com.data.processor.BasicController;
 
 @SpringBootApplication
 //@ComponentScan(basePackageClasses = BasicController.class)
-@ComponentScan(basePackages="com.data.processor,com.data.kafka.consumer,com.data.repositories,com.data.service,com.data.serviceImpl")
+@ComponentScan(basePackages="com.data.processor,com.data.kafka.consumer,com.data.repositories,com.data.service,com.data.serviceImpl,com.data.exception")
 @EnableJpaRepositories("com.data.repositories")
 @EntityScan("com.data.model")
 public class SpringKafkaApplication {
@@ -22,15 +22,5 @@ public class SpringKafkaApplication {
     SpringApplication.run(SpringKafkaApplication.class, args);
   }
   
-//  @Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurer() {
-//			@Override
-//			public void addCorsMappings(CorsRegistry registry) {
-//				//registry.addMapping("/**").allowedOrigins("http://192.168.8.102:9002");
-//				  registry.addMapping("/**")
-//	                .allowedMethods("GET", "POST");
-//			}
-//		};
-//	}
+
 }

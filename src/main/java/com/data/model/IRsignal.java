@@ -6,11 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * IRsignal entity.
  */
 @Entity
+@Table(name = "ir_signal")
 public class IRsignal {
 	
 
@@ -25,6 +29,10 @@ public class IRsignal {
 	
 	@Column(name="value")
 	private String value;
+	
+	@ManyToOne
+	@JoinColumn(name="appliance_id", nullable=false)
+	private ApplienceMetaData applianceId;
 
 	public Integer getId() {
 		return id;
@@ -48,6 +56,14 @@ public class IRsignal {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public ApplienceMetaData getApplianceId() {
+		return applianceId;
+	}
+
+	public void setApplianceId(ApplienceMetaData applianceId) {
+		this.applianceId = applianceId;
 	}
 	
 	
