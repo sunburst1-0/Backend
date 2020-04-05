@@ -1,0 +1,38 @@
+package KieRule;
+import com.data.rules.Condition;
+
+rule "temperatureHigh"
+
+	when
+		conditionObject : Condition(conditionType == "temperature" && conditionLimit < nowValue);
+	then
+		conditionObject.setMessage("Temperature need to decrease");
+	end;
+
+
+rule "temperatureLow"
+
+	when
+		conditionObject : Condition(conditionType == "temperature" && conditionLimit > nowValue);
+	then
+		conditionObject.setMessage("Temperature need to increase");	
+	end;
+	
+	
+rule "lightHigh"
+
+	when
+		conditionObject : Condition(conditionType == "light" && conditionLimit < nowValue);
+	then
+		conditionObject.setMessage("light need to decrease");
+	end;
+
+
+rule "lightLow"
+
+	when
+		conditionObject : Condition(conditionType == "light" && conditionLimit > nowValue);
+	then
+		conditionObject.setMessage("light to increase");
+	end;
+
