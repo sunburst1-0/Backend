@@ -1,0 +1,79 @@
+package com.data.model;
+
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+/**
+ * Mobileoperators  entity.
+ */
+@Entity
+@Table(name = "mobile_operators")
+public class Mobileoperators {
+	
+	@Id
+	@Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+	
+	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name=" emp_no")
+	private String employeeNo;
+	
+		
+	@Column(name="mobile")
+	private String mobileNo;
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getEmployeeNo() {
+		return employeeNo;
+	}
+
+
+	public void setEmployeeNo(String employeeNo) {
+		this.employeeNo = employeeNo;
+	}
+
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+	
+	
+	
+
+}
