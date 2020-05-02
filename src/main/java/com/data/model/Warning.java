@@ -2,6 +2,8 @@ package com.data.model;
 
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,8 +36,12 @@ public class Warning {
 		
 	@Column(name="warn_message")
 	private String warnMessage;
+	
+	
+	@Column(name="occur_time")
+	private Date occurTime;
 
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -73,6 +79,16 @@ public class Warning {
 
 	public void setWarnMessage(String warnMessage) {
 		this.warnMessage = warnMessage;
+	}
+
+
+	public Date getOccurTime() {
+		return occurTime;
+	}
+
+
+	public void setOccurTime(Date occurTime) {
+		this.occurTime = occurTime;
 	}
 	
 	
