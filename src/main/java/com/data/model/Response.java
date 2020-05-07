@@ -49,6 +49,10 @@ public class Response {
 	private Date msgResponseTime;
 	
 	@ManyToOne
+	@JoinColumn(name="applience_type", nullable=false)
+	private ApplianceType applianceType;
+	
+	@ManyToOne
 	@JoinColumn(name="warning_id", nullable=false)
 	private Warning warning;
 
@@ -82,6 +86,14 @@ public class Response {
 
 	public void setMsgResponseTime(Date msgResponseTime) {
 		this.msgResponseTime = msgResponseTime;
+	}
+
+	public ApplianceType getApplianceType() {
+		return applianceType;
+	}
+
+	public void setApplianceType(ApplianceType applianceType) {
+		this.applianceType = applianceType;
 	}
 
 	public Warning getWarning() {
