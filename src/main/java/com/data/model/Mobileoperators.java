@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Mobileoperators {
 	
 	@Id
-	@Column(name="id")
+	@Column(name="id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 	
@@ -26,7 +26,7 @@ public class Mobileoperators {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name=" emp_no")
+	@Column(name=" emp",nullable = false)
 	private String employeeNo;
 	
 		
@@ -52,7 +52,6 @@ public class Mobileoperators {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getEmployeeNo() {
 		return employeeNo;
