@@ -1,5 +1,6 @@
 package com.data.processor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +23,12 @@ import com.data.exception.ResourceNotFoundException;
 import com.data.model.ApplienceMetaData;
 import com.data.model.Floor;
 import com.data.model.IRsignal;
+import com.data.model.Incident;
 import com.data.model.Location;
 import com.data.model.Response;
 import com.data.model.RoomSize;
+import com.data.model.WarningHandler;
+import com.data.model.WarningMessage;
 import com.data.repositories.FloorRepository;
 import com.data.repositories.LocationRepository;
 import com.data.repositories.ResponseRepository;
@@ -42,12 +46,57 @@ public class ResponseMessageController {
 	  
 	
 		 @GetMapping(value = "/all")
-		    public ResponseEntity<List<Response>> getAllResponse() {
+		    public ResponseEntity<List<WarningHandler>> getAllResponse() {
 		
-
-		    	List<Response> list = responseRepository.findAll() ;
+			 List<WarningHandler> WarningMessageList =new ArrayList<WarningHandler>();
+			 List<Response> responselist = responseRepository.findAll() ;
+		     List<Integer> warninglist=responselist.stream().map(e->e.getWarning().getId()).distinct().collect(Collectors.toList());  	
+		    	
+		     
+		     if(!warninglist.isEmpty()) {
+		    	 
+		    	for (Integer responseId :warninglist) {
+		    		
+		    		WarningHandler handelmessage= new WarningHandler();
+		    		List<Response> filterdresponselist=responselist.stream().filter(e->e.getWarning().getId()==responseId).collect(Collectors.toList());  
+		    		List<Incident>IncidentList =new ArrayList<Incident>();
+		    	
+		    		
+		    		handelmessage.setRaisedPerson(filterdresponselist.stream().map(e->e.getMobileoperators()).findFirst().get());
+		    		handelmessage.setRespondPerson((filterdresponselist.size()==1?null:filterdresponselist.get(1).getMobileoperators()));
+		    		for(Response filterResponse:filterdresponselist) {
+		    					    		
+		    			if(handelmessage.getWarning()==null) {
+		    				handelmessage.setWarning(filterResponse.getWarning());
+				    		handelmessage.setApplianceType(filterResponse.getApplianceType());
+				    	}
+		    			
+			    		WarningMessage message =new WarningMessage();
+			    		message.setMessage(filterResponse.getRepplyMessage());
+			    		message.setMsgResponseTime(filterResponse.getMsgResponseTime());
+			    
+			    		Incident incidentNode= new Incident();
+			    		if((filterdresponselist.indexOf(filterResponse))%2 !=0) {
+			    			
+			    			incidentNode.setRaisedMessage(null);
+			    			incidentNode.setRespondMessage(message);
+			    		}
+			    		else {
+			    			incidentNode.setRaisedMessage(message);
+			    			incidentNode.setRespondMessage(null);
+			    			}
+			    		
+			    		IncidentList.add(incidentNode);
+			    		handelmessage.setIncident(IncidentList);
+			    		}
+		    	
+		    		WarningMessageList.add(handelmessage);
+		    		   	
+		    	}
+		    	
+		     }   	
 	 
-		    	 return new ResponseEntity<List<Response>>(list, HttpStatus.OK);
+		    	 return new ResponseEntity<List<WarningHandler>>(WarningMessageList, HttpStatus.OK);
 		    }
 		 
 		  @GetMapping("/{typeId}")
