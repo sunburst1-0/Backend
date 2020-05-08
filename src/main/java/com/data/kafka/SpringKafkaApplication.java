@@ -14,7 +14,7 @@ import com.data.processor.BasicController;
 @SpringBootApplication
 //@ComponentScan(basePackageClasses = BasicController.class)
 //@ComponentScan(basePackages="com.data.config,com.data.processor,com.data.kafka.consumer,com.data.repositories,com.data.service,com.data.serviceImpl,com.data.exception,com.data.rules")
-@ComponentScan(basePackages="com.data.exception,com.data.processor,com.data.kafka.consumer,com.data.repositories,com.data.service,com.data.serviceImpl,com.data.exception,com.data.rules")
+@ComponentScan(basePackages="com.data.schedular,com.data.exception,com.data.processor,com.data.kafka.consumer,com.data.repositories,com.data.service,com.data.serviceImpl,com.data.exception,com.data.rules")
 @EnableJpaRepositories("com.data.repositories")
 @EntityScan("com.data.model")
 public class SpringKafkaApplication {
