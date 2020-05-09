@@ -21,7 +21,7 @@ public class Schedular {
 		System.out.println("Shedular rumming"+connectDatabase());
 	    InfluxDB connection = connectDatabase();
 		System.out.println("Shedular rumming"+pingServer(connection));
-  
+		whenDatabaseCreatedDatabaseChecksOk();
 		
 		
 	}
@@ -49,6 +49,22 @@ public class Schedular {
         	System.out.println("Exception while pinging database: "+ idbo);
             return false;
         }
+    }
+    
+    public void whenDatabaseCreatedDatabaseChecksOk() {
+
+        InfluxDB connection = connectDatabase();
+
+        // Create "baeldung" and check for it
+        connection.createDatabase("baeldung");
+        System.out.println("is it true :::"+connection.databaseExists("baeldung"));
+
+        // Verify that nonsense databases are not there
+     	System.out.println( connection.databaseExists("foobar"));
+
+        // Drop "baeldung" and check again
+        connection.deleteDatabase("baeldung");
+     	System.out.println(connection.databaseExists("baeldung"));
     }
 
 }

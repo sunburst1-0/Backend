@@ -4,7 +4,7 @@ import com.data.rules.Condition;
 rule "temperatureHigh"
 
 	when
-		conditionObject : Condition(conditionType == "temperature" && conditionLimit < nowValue);
+		conditionObject : Condition(conditionType == "T" && conditionLimit < nowValue);
 	then
 		conditionObject.setMessage("Temperature need to decrease");
 	end;
@@ -13,7 +13,7 @@ rule "temperatureHigh"
 rule "temperatureLow"
 
 	when
-		conditionObject : Condition(conditionType == "temperature" && conditionLimit > nowValue);
+		conditionObject : Condition(conditionType == "T" && conditionLimit > nowValue);
 	then
 		conditionObject.setMessage("Temperature need to increase");	
 	end;
@@ -22,7 +22,7 @@ rule "temperatureLow"
 rule "lightHigh"
 
 	when
-		conditionObject : Condition(conditionType == "light" && conditionLimit < nowValue);
+		conditionObject : Condition(conditionType == "L" && conditionLimit < nowValue);
 	then
 		conditionObject.setMessage("light need to decrease");
 	end;
@@ -31,8 +31,61 @@ rule "lightHigh"
 rule "lightLow"
 
 	when
-		conditionObject : Condition(conditionType == "light" && conditionLimit > nowValue);
+		conditionObject : Condition(conditionType == "L" && conditionLimit > nowValue);
 	then
 		conditionObject.setMessage("light to increase");
 	end;
+	
+	
+rule "HumidityHigh"
 
+	when
+		conditionObject : Condition(conditionType == "H" && conditionLimit < nowValue);
+	then
+		conditionObject.setMessage("Humidity Level decrease");
+	end;
+
+
+rule "HumidityLow"
+
+	when
+		conditionObject : Condition(conditionType == "H" && conditionLimit > nowValue);
+	then
+		conditionObject.setMessage("Humidity Level increase");	
+	end;
+
+
+rule "HumidityHighTemperatureHigh"
+
+	when
+		conditionObject : Condition(conditionType == "HT" && conditionLimit < nowValue && humidityConditionLimit < nowValue);
+	then
+		conditionObject.setMessage("Humidity and temperature levels decrease");
+	end;
+
+
+rule "HumidityHighTemperatureLow"
+
+	when
+		conditionObject : Condition(conditionType == "HT" && conditionLimit < nowValue && humidityConditionLimit > nowValue);
+	then
+		conditionObject.setMessage("Humidity level increase and temperature level decrease");	
+	end;
+
+	
+rule "HumidityLowTemperatureHigh"
+
+	when
+		conditionObject : Condition(conditionType == "HT" && conditionLimit > nowValue && humidityConditionLimit < nowValue);
+	then
+		conditionObject.setMessage("Humidity and temperature levels increse");
+	end;
+
+
+rule "HumidityLowTemperatureLow"
+
+	when
+		conditionObject : Condition(conditionType == "HT" && conditionLimit > nowValue && humidityConditionLimit > nowValue);
+	then
+		conditionObject.setMessage("Humidity level decrease and temperature level increse");	
+	end;	
