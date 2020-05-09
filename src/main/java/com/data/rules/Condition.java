@@ -6,18 +6,19 @@ public class Condition {
 	private String conditionType;
 	private int conditionLimit;
 	private int nowValue;
-	private int value;
+	private int humidityConditionLimit;
+	//private int value;
 	private String message;
 	private String desicion;
 	
 	
-	public int getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
+//	public int getValue() {
+//		return value;
+//	}
+//
+//	public void setValue(int value) {
+//		this.value = value;
+//	}
 
 
 	
@@ -68,6 +69,14 @@ public class Condition {
 
 	public void setDesicion(String desicion) {
 		this.desicion = desicion;
+	}
+
+	public int getHumidityConditionLimit() {
+		return humidityConditionLimit;
+	}
+
+	public void setHumidityConditionLimit(int humidityConditionLimit) {
+		this.humidityConditionLimit = humidityConditionLimit;
 	}
 
 	
